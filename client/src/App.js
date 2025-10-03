@@ -1,13 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
-import GrowingText from "./GrowingText";
+import GrowingText from "./components/GrowingText";
+import ColorfulText from './components/ColorfulText';
 
 function App() {
 
   return (
     <div>
-      <h1>Project</h1>
+      <h1>Funny Project</h1>
       <GrowingText />
+      <ColorfulText />
     </div>
   );
 }
