@@ -6,15 +6,6 @@ export default function ColorfulText() {
 
   return (
     <div style={{ padding: "20px" }}>
-      {/* <div
-        style={{
-          marginTop: "20px",
-          fontWeight: "bold",
-          color: `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0')}`,
-        }}
-      >
-        {text || "Preview here"}
-      </div> */}
       <input
         type="text"
         value={text}
