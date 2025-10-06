@@ -2,6 +2,20 @@
   text-align: center;
 }
 
+.Boo, .BooText {
+  display: inline;
+}
+@keyframes blink {
+  0%, 50%, 100% { opacity: 0; }
+  25%, 75% { opacity: 1; }
+}
+
+.BooText {
+  font-size: 32px;
+  font-weight: bold;
+  display: inline-block;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
