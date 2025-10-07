@@ -4,6 +4,7 @@ import ColorfulText from './components/ColorfulText.jsx';
 import ChangingText from './components/ChangingText.tsx';
 import TimedJumpscare from './components/TimedJumpscare.tsx';
 import Predict from './components/Predict.jsx';
+import RandomNumber from './components/RandomNumber.jsx';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
       <ColorfulText />
       <ChangingText textProperty='fontSize' textChange={textChange} />
       <Predict/>
+      <RandomNumber />
       <div classname='Boo'>
         {Array.from( {length: 3}, (_, i) => (
           <TimedJumpscare key={i} waitTime={(i + 1) * 1000} scareTime={(i + 1) * 1000} />
