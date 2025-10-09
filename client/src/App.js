@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useMemo, useState } from 'react';
 import GrowingText from "./components/GrowingText.jsx";
 import ColorfulText from './components/ColorfulText.jsx';
 import ChangingText from './components/ChangingText.tsx';
@@ -13,54 +14,48 @@ function App() {
     return fontSize
   }
 
+  const tabs = useMemo(() => ([
+    { id: 'growing', label: 'Growing Text', render: () => (<GrowingText />) },
+    { id: 'colorful', label: 'Colorful Text', render: () => (<ColorfulText />) },
+    { id: 'changing', label: 'Changing Text', render: () => (<ChangingText textProperty='fontSize' textChange={textChange} />) },
+    { id: 'predict', label: 'Predict', render: () => (<Predict />) },
+    { id: 'random', label: 'Random Number', render: () => (<RandomNumber />) },
+    { id: 'jumpscares', label: 'Timed Jumpscares', render: () => (
+      <div className='Boo'>
+        {Array.from( {length: 3}, (_, i) => (
+          <TimedJumpscare key={i} waitTime={(i + 1) * 1000} scareTime={(i + 1) * 1000} />
+        )) }
+      </div>
+    ) },
+  ]), []);
+
+  const [activeTab, setActiveTab] = useState(tabs[0].id);
+
   return (
     <div className="page">
       <div className="container">
-        <h1 className="title">Funny Project</h1>
-        <div className="grid">
-          <section className="card half">
-            <h2>Growing Text</h2>
-            <div className="card-content">
-              <GrowingText />
-            </div>
-          </section>
+        <h1 className="title">Testing/JS Project</h1>
+        <div className="tabs">
+          <div className="tab-list" role="tablist" aria-label="Components">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                aria-controls={`panel-${tab.id}`}
+                id={`tab-${tab.id}`}
+                className={`tab ${activeTab === tab.id ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
 
-          <section className="card half">
-            <h2>Colorful Text</h2>
+          <section className="card tab-panel" role="tabpanel" id={`panel-${activeTab}`} aria-labelledby={`tab-${activeTab}`}>
+            <h2>{tabs.find(t => t.id === activeTab)?.label}</h2>
             <div className="card-content">
-              <ColorfulText />
-            </div>
-          </section>
-
-          <section className="card half">
-            <h2>Changing Text</h2>
-            <div className="card-content">
-              <ChangingText textProperty='fontSize' textChange={textChange} />
-            </div>
-          </section>
-
-          <section className="card half">
-            <h2>Predict</h2>
-            <div className="card-content">
-              <Predict/>
-            </div>
-          </section>
-
-          <section className="card half">
-            <h2>Random Number</h2>
-            <div className="card-content">
-              <RandomNumber />
-            </div>
-          </section>
-
-          <section className="card full">
-            <h2>Timed Jumpscares</h2>
-            <div className="card-content">
-              <div className='Boo'>
-                {Array.from( {length: 3}, (_, i) => (
-                  <TimedJumpscare key={i} waitTime={(i + 1) * 1000} scareTime={(i + 1) * 1000} />
-                )) }
-              </div>
+              {tabs.find(t => t.id === activeTab)?.render()}
             </div>
           </section>
         </div>
