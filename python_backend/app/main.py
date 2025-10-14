@@ -2,8 +2,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import random
 
-# To run, `run uvicorn app.main:app --reload --port 8000` in python_backend folder
+# To run, run `uvicorn app.main:app --reload --port 8000` in python_backend folder
 
 class TextInput(BaseModel):
     text: str
@@ -27,3 +28,8 @@ def root():
 def predict(input: TextInput):
     # Placeholder inference
     return {"result": f"Predicted for: {input.text}"}
+
+@app.get("/funny_word")
+def giveFunnyWord():
+    funnyWords = ["Skibity", "Turtle", "Rizz", "Sigma"]
+    return {"result": f"{random.choice(funnyWords)}"}
