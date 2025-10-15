@@ -7,6 +7,7 @@ import TimedJumpscare from './components/TimedJumpscare.tsx';
 import Predict from './components/Predict.jsx';
 import RandomNumber from './components/RandomNumber.jsx';
 import GetFunnyWord from './components/GetFunnyWord.jsx';
+import SolveLeetCode from './components/SolveLeetCode.jsx';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
     { id: 'colorful', label: 'Colorful Text', render: () => (<ColorfulText />) },
     { id: 'changing', label: 'Changing Text', render: () => (<ChangingText textProperty='fontSize' textChange={textChange} />) },
     { id: 'predict', label: 'Predict', render: () => (<Predict />) },
+    { id: 'leetcode', label: 'Solve Leetcode', render: () => (<SolveLeetCode />) },
     { id: 'funny', label: 'Get Funny word', render: () => (<GetFunnyWord />) },
     { id: 'random', label: 'Random Number', render: () => (<RandomNumber />) },
     { id: 'jumpscares', label: 'Timed Jumpscares', render: () => (
