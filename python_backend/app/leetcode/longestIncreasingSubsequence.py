@@ -3,11 +3,11 @@ from bisect import bisect_left
 
 # Consider only strictly increasing
 class LongestIncreasingSubsequence( Problem ):
-    def solve( self ):
-        if( "nums" not in self.args ):
+    def solution( self, args ):
+        if( "nums" not in args ):
             raise ArgError( "nums not in given arguments" )
 
-        nums = self.args["nums"]
+        nums = args["nums"]
 
         n = len( nums )
 

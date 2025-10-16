@@ -7,9 +7,19 @@ class Problem():
 
     def getProblemName( self ):
         return self.problemName
+    def setProblemName( self, problemName ):
+        self.problemName = problemName
+    def getArgs( self ):
+        return self.args
+    def setArgs( self, args ):
+        self.args = args
+
+    def solve( self, args = {} ):
+        answer = self.solution( args ) if args else self.solution( self.args )
+        return answer
 
     @abstractmethod
-    def solve( self ):
+    def solution( self, args ):
         pass
 
 class ArgError(Exception):

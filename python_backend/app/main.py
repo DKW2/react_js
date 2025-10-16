@@ -2,7 +2,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List
+from typing import List, Any
 from app.leetcode.longestIncreasingSubsequence import LongestIncreasingSubsequence
 from app.leetcode.framework import ArgError
 import random
@@ -13,7 +13,7 @@ class TextInput(BaseModel):
     text: str
 
 class ProblemData(BaseModel):
-    data: List[int]
+    data: dict[str, Any]
     problemName: str
 
 app = FastAPI()
@@ -46,7 +46,7 @@ def getOptions(input:ProblemData):
     data, problemName = input.data, input.problemName
 
     try:
-        problem = LongestIncreasingSubsequence( problemName, {"nums": data} )
+        problem = LongestIncreasingSubsequence( problemName, data )
         answer = problem.solve()
     except ArgError:
         return {"result": "Bad args"}
