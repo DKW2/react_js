@@ -3,15 +3,7 @@ import React from 'react';
 function ProblemSelector({ selectedProblem, onProblemChange }) {
   const leetcodeProblems = [
     { id: 'LIS', name: 'Longest Increasing Subsequence' },
-    { id: 'TwoSum', name: 'Two Sum' },
-    { id: 'AddTwoNumbers', name: 'Add Two Numbers' },
-    { id: 'LongestSubstring', name: 'Longest Substring Without Repeating Characters' },
-    { id: 'MedianOfTwoArrays', name: 'Median of Two Sorted Arrays' },
-    { id: 'Palindrome', name: 'Longest Palindromic Substring' },
-    { id: 'ZigZag', name: 'ZigZag Conversion' },
-    { id: 'ReverseInteger', name: 'Reverse Integer' },
-    { id: 'Atoi', name: 'String to Integer (atoi)' },
-    { id: 'ContainerWithMostWater', name: 'Container With Most Water' }
+    { id: 'LCS', name: 'Longest Common Subsequence' },
   ];
 
   return (

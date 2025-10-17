@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Any
 from app.leetcode.longestIncreasingSubsequence import LongestIncreasingSubsequence
+from app.leetcode.longestCommonSubsequence import LongestCommonSubsequence
 from app.leetcode.framework import ArgError
 import random
 
@@ -46,9 +47,18 @@ def getOptions(input:ProblemData):
     data, problemName = input.data, input.problemName
 
     try:
-        problem = LongestIncreasingSubsequence( problemName, data )
+        if problemName == "LIS":
+            problem = LongestIncreasingSubsequence( problemName, data )
+        elif problemName == "LCS":
+            problem = LongestCommonSubsequence( problemName, data )
+        else:
+            return {"result": "Problem not found"}
+
         answer = problem.solve()
     except ArgError:
         return {"result": "Bad args"}
 
-    return {"result": ", ".join( str( num ) for num in answer )}
+    if( type(answer) == list ):
+        return {"result": ", ".join( str( num ) for num in answer )}
+    else:
+        return {"result": str( answer ) }
