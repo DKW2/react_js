@@ -1,14 +1,20 @@
 # backend/app/main.py
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Any
+
+# DB stuff
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+from . import models, db, dependencies
+
 from app.leetcode.longestIncreasingSubsequence import LongestIncreasingSubsequence
 from app.leetcode.longestCommonSubsequence import LongestCommonSubsequence
 from app.leetcode.framework import ArgError
 import random
 
-# To run, run `uvicorn app.main:app --reload --port 8000` in python_backend folder
+# To run, run `python -m uvicorn app.main:app --reload --port 8000` in python_backend folder
 
 class TextInput(BaseModel):
     text: str
@@ -18,6 +24,8 @@ class ProblemData(BaseModel):
     problemName: str
 
 app = FastAPI()
+
+models.Base.metadata.create_all(bind=db.engine)
 
 # Allow frontend to call backend
 app.add_middleware(
@@ -62,3 +70,28 @@ def getOptions(input:ProblemData):
         return {"result": ", ".join( str( num ) for num in answer )}
     else:
         return {"result": str( answer ) }
+
+class UserCreate(BaseModel):
+    name: str
+    email: str
+
+@app.post("/users/")
+def create_user(user: UserCreate, db: Session = Depends(dependencies.get_db)):
+    user = models.User(name=user.name, email=user.email)
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
+
+class UserRead(BaseModel):
+    id: int
+    name: str
+    email: str
+
+    class Config:
+        orm_mode = True  # allows SQLAlchemy models to be converted to Pydantic models
+        
+@app.get("/users/")
+def get_users(db: Session = Depends(dependencies.get_db)):
+    users = db.query(models.User).all()  # retrieves all users
+    return users

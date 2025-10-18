@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./python_backend
+    container_name: fastapi_backend
+    env_file:
+      - ./python_backend/.env
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build: ./client
+    container_name: react_frontend
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./frontend:/app  # 👈 live mount for React
+    environment:
+      - CHOKIDAR_USEPOLLING=true  # 👈 helps React detect file changes
+
+volumes:
+  postgres_data:

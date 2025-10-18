@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import ProblemSelector from './ProblemSelector';
 import ArgumentManager from './ArgumentManager';
+import { API_URL } from "../config";
 
 export default function SolveLeetCode() {
   const [problemName, setProblemName] = useState("");
@@ -127,7 +128,7 @@ export default function SolveLeetCode() {
 
       console.log('Sending payload:', payload);
 
-      const res = await axios.post("http://localhost:8000/array_problem", payload);
+      const res = await axios.post(`${API_URL}/array_problem`, payload);
       setResult(res.data.result);
     } catch (error) {
       console.error('Error:', error);

@@ -8,6 +8,8 @@ import Predict from './components/Predict.jsx';
 import RandomNumber from './components/RandomNumber.jsx';
 import GetFunnyWord from './components/GetFunnyWord.jsx';
 import SolveLeetCode from './components/SolveLeetCode.jsx';
+import CreateUser from './components/CreateUser.jsx';
+import FetchUsers from './components/FetchUsers.jsx';
 
 function App() {
 
@@ -22,6 +24,8 @@ function App() {
     { id: 'changing', label: 'Changing Text', render: () => (<ChangingText textProperty='fontSize' textChange={textChange} />) },
     { id: 'predict', label: 'Predict', render: () => (<Predict />) },
     { id: 'leetcode', label: 'Solve Leetcode', render: () => (<SolveLeetCode />) },
+    { id: 'createuser', label: 'Create User', render: () => (<CreateUser />) },
+    { id: 'fetchusers', label: 'Fetch Users', render: () => (<FetchUsers />) },
     { id: 'funny', label: 'Get Funny word', render: () => (<GetFunnyWord />) },
     { id: 'random', label: 'Random Number', render: () => (<RandomNumber />) },
     { id: 'jumpscares', label: 'Timed Jumpscares', render: () => (

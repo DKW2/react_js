@@ -2,13 +2,14 @@
 // Simple script utilizing axios to access fastAPI server.
 import { useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 export default function Predict() {
   const [text, setText] = useState("");
   const [result, setResult] = useState("");
 
   const handleSubmit = async () => {
-    const res = await axios.post("http://localhost:8000/predict", { text })
+    const res = await axios.post(`${API_URL}/predict`, { text })
     .then( res => setResult(res.data.result) )
     .catch( error => setResult( "NETWORK ERROR") );
   };
