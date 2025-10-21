@@ -7,6 +7,7 @@ function FetchUsers() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [lastFetch, setLastFetch] = useState(null);
+  const [deletingId, setDeletingId] = useState(null);
 
   const fetchUsers = async () => {
     setIsLoading(true);
@@ -37,6 +38,33 @@ function FetchUsers() {
 
   const handleRefresh = () => {
     fetchUsers();
+  };
+
+  const handleDeleteUser = async (userId) => {
+    if (!window.confirm('Are you sure you want to delete this user?')) {
+      return;
+    }
+
+    setDeletingId(userId);
+    setError('');
+
+    try {
+      await axios.delete(`${API_URL}/users/${userId}`);
+      // Remove the user from the local state
+      setUsers(prevUsers => prevUsers.filter(user => user.id !== userId));
+      setLastFetch(new Date().toLocaleTimeString());
+    } catch (error) {
+      console.error('Error deleting user:', error);
+      if (error.response) {
+        setError(`Server error: ${error.response.data.message || error.response.statusText}`);
+      } else if (error.request) {
+        setError('Network error: Unable to connect to server');
+      } else {
+        setError('An unexpected error occurred');
+      }
+    } finally {
+      setDeletingId(null);
+    }
   };
 
   return (
@@ -110,7 +138,7 @@ function FetchUsers() {
         }}>
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '80px 1fr 200px',
+            gridTemplateColumns: '80px 1fr 200px 100px',
             padding: '1rem',
             backgroundColor: 'rgba(255, 255, 255, 0.1)',
             fontWeight: 'bold',
@@ -119,7 +147,8 @@ function FetchUsers() {
           }}>
             <div style={{ borderRight: '1px solid rgba(255, 255, 255, 0.2)', paddingRight: '1rem' }}>ID</div>
             <div style={{ borderRight: '1px solid rgba(255, 255, 255, 0.2)', paddingRight: '1rem', paddingLeft: '1rem' }}>Name</div>
-            <div style={{ paddingLeft: '1rem' }}>Email</div>
+            <div style={{ borderRight: '1px solid rgba(255, 255, 255, 0.2)', paddingRight: '1rem', paddingLeft: '1rem' }}>Email</div>
+            <div style={{ paddingLeft: '1rem', textAlign: 'center' }}>Actions</div>
           </div>
           
           {users.map((user, index) => (
@@ -127,7 +156,7 @@ function FetchUsers() {
               key={user.id || index}
               style={{
                 display: 'grid',
-                gridTemplateColumns: '80px 1fr 200px',
+                gridTemplateColumns: '80px 1fr 200px 100px',
                 padding: '1rem',
                 borderBottom: index < users.length - 1 ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
                 backgroundColor: index % 2 === 0 ? 'rgba(255, 255, 255, 0.02)' : 'transparent',
@@ -154,10 +183,33 @@ function FetchUsers() {
               </div>
               <div style={{ 
                 color: '#ccc',
+                borderRight: '1px solid rgba(255, 255, 255, 0.2)',
+                paddingRight: '1rem',
                 paddingLeft: '1rem',
                 wordBreak: 'break-word'
               }}>
                 {user.email || 'N/A'}
+              </div>
+              <div style={{ 
+                paddingLeft: '1rem',
+                textAlign: 'center'
+              }}>
+                <button
+                  onClick={() => handleDeleteUser(user.id)}
+                  disabled={deletingId === user.id || !user.id}
+                  style={{
+                    padding: '4px 8px',
+                    fontSize: '12px',
+                    backgroundColor: deletingId === user.id ? '#ccc' : '#dc3545',
+                    color: 'white',
+                    border: 'none',
+                    borderRadius: '4px',
+                    cursor: deletingId === user.id || !user.id ? 'not-allowed' : 'pointer',
+                    transition: 'background-color 0.2s'
+                  }}
+                >
+                  {deletingId === user.id ? 'Deleting...' : 'Delete'}
+                </button>
               </div>
             </div>
           ))}

@@ -54,6 +54,8 @@ def giveFunnyWord():
 def getOptions(input:ProblemData):
     data, problemName = input.data, input.problemName
 
+    print( f"Processing problem: {problemName} with data: {data}" )
+
     try:
         if problemName == "LIS":
             problem = LongestIncreasingSubsequence( problemName, data )
@@ -82,6 +84,16 @@ def create_user(user: UserCreate, db: Session = Depends(dependencies.get_db)):
     db.commit()
     db.refresh(user)
     return user
+
+@app.delete("/users/{user_id}")
+def delete_user(user_id: int, db: Session = Depends(dependencies.get_db)):
+    user = db.query(models.User).filter(models.User.id == user_id).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    db.delete(user)
+    db.commit()
+    return {"result": "User deleted successfully"}
+
 
 class UserRead(BaseModel):
     id: int

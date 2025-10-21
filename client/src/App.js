@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import GrowingText from "./components/GrowingText.jsx";
 import ColorfulText from './components/ColorfulText.jsx';
 import ChangingText from './components/ChangingText.tsx';
@@ -37,7 +37,16 @@ function App() {
     ) },
   ]), []);
 
-  const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const [activeTab, setActiveTab] = useState(() => {
+    // Initialize with saved tab or default to first tab
+    const savedTab = localStorage.getItem('activeTab');
+    return savedTab && tabs.find(tab => tab.id === savedTab) ? savedTab : tabs[0].id;
+  });
+
+  // Save active tab to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('activeTab', activeTab);
+  }, [activeTab]);
 
   return (
     <div className="page">
