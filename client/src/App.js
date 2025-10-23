@@ -10,6 +10,7 @@ import GetFunnyWord from './components/GetFunnyWord.jsx';
 import SolveLeetCode from './components/SolveLeetCode.jsx';
 import CreateUser from './components/CreateUser.jsx';
 import FetchUsers from './components/FetchUsers.jsx';
+import QueryLLM from './components/QueryLLM.jsx';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
     { id: 'leetcode', label: 'Solve Leetcode', render: () => (<SolveLeetCode />) },
     { id: 'createuser', label: 'Create User', render: () => (<CreateUser />) },
     { id: 'fetchusers', label: 'Fetch Users', render: () => (<FetchUsers />) },
+    { id: 'queryllm', label: 'Query LLM', render: () => (<QueryLLM />) },
     { id: 'funny', label: 'Get Funny word', render: () => (<GetFunnyWord />) },
     { id: 'random', label: 'Random Number', render: () => (<RandomNumber />) },
     { id: 'jumpscares', label: 'Timed Jumpscares', render: () => (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../config';
+import '../styles/CreateUser.css';
 
 function CreateUser() {
   const [formData, setFormData] = useState({
@@ -67,12 +68,12 @@ function CreateUser() {
   };
 
   return (
-    <div style={{ padding: "1rem", maxWidth: "500px", margin: "0 auto" }}>
-      <h2 style={{ marginBottom: "1rem", color: "white" }}>Create User</h2>
+    <div className="create-user-container">
+      <h2 className="create-user-title">Create User</h2>
       
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', color: 'white' }}>
+      <form onSubmit={handleSubmit} className="create-user-form">
+        <div className="create-user-input-group">
+          <label className="create-user-label">
             Name:
           </label>
           <input
@@ -81,19 +82,13 @@ function CreateUser() {
             value={formData.name}
             onChange={handleInputChange}
             placeholder="Enter user name"
-            style={{
-              width: '100%',
-              padding: '8px',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '14px'
-            }}
+            className="create-user-input"
             disabled={isLoading}
           />
         </div>
 
-        <div>
-          <label style={{ display: 'block', marginBottom: '0.5rem', color: 'white' }}>
+        <div className="create-user-input-group">
+          <label className="create-user-label">
             Email:
           </label>
           <input
@@ -102,13 +97,7 @@ function CreateUser() {
             value={formData.email}
             onChange={handleInputChange}
             placeholder="Enter email address"
-            style={{
-              width: '100%',
-              padding: '8px',
-              borderRadius: '4px',
-              border: '1px solid #ccc',
-              fontSize: '14px'
-            }}
+            className="create-user-input"
             disabled={isLoading}
           />
         </div>
@@ -116,42 +105,20 @@ function CreateUser() {
         <button
           type="submit"
           disabled={isLoading}
-          style={{
-            padding: '10px 20px',
-            fontSize: '16px',
-            backgroundColor: isLoading ? '#ccc' : '#007bff',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: isLoading ? 'not-allowed' : 'pointer'
-          }}
+          className={`create-user-button create-user-button-primary`}
         >
           {isLoading ? 'Creating...' : 'Create User'}
         </button>
       </form>
 
       {error && (
-        <div style={{
-          marginTop: '1rem',
-          padding: '0.75rem',
-          backgroundColor: '#f8d7da',
-          border: '1px solid #f5c6cb',
-          borderRadius: '4px',
-          color: '#721c24'
-        }}>
+        <div className="create-user-error">
           <strong>Error:</strong> {error}
         </div>
       )}
 
       {result && (
-        <div style={{
-          marginTop: '1rem',
-          padding: '0.75rem',
-          backgroundColor: '#d4edda',
-          border: '1px solid #c3e6cb',
-          borderRadius: '4px',
-          color: '#155724'
-        }}>
+        <div className="create-user-success">
           <strong>Success:</strong> {result}
         </div>
       )}

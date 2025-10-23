@@ -1,5 +1,6 @@
 // Created by Cursor.ai
 import React, { useState } from 'react';
+import '../styles/RandomNumber.css';
 
 function RandomNumber() {
   const [minValue, setMinValue] = useState('');
@@ -29,34 +30,34 @@ function RandomNumber() {
   }
 
   return (
-    <div style={{ margin: '16px 0' }}>
-      <h2>Random Number Generator</h2>
-      <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
-        <label>
+    <div className="random-number-container">
+      <h2 className="random-number-title">Random Number Generator</h2>
+      <div className="random-number-controls">
+        <label className="random-number-label">
           Min:
           <input
             type="number"
             value={minValue}
             onChange={(e) => setMinValue(e.target.value)}
-            style={{ marginLeft: 4 }}
+            className="random-number-input"
           />
         </label>
-        <label>
+        <label className="random-number-label">
           Max:
           <input
             type="number"
             value={maxValue}
             onChange={(e) => setMaxValue(e.target.value)}
-            style={{ marginLeft: 4 }}
+            className="random-number-input"
           />
         </label>
-        <button onClick={generateRandom}>Generate</button>
+        <button onClick={generateRandom} className="random-number-button">Generate</button>
       </div>
       {errorMessage && (
-        <div style={{ color: 'red', marginTop: 8 }}>{errorMessage}</div>
+        <div className="random-number-error">{errorMessage}</div>
       )}
       {randomNumber !== null && !errorMessage && (
-        <div style={{ marginTop: 8 }}>
+        <div className="random-number-result">
           Result: <strong>{randomNumber}</strong>
         </div>
       )}

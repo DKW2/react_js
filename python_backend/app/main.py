@@ -14,6 +14,8 @@ from app.leetcode.longestCommonSubsequence import LongestCommonSubsequence
 from app.leetcode.framework import ArgError
 import random
 
+from pocketflow.utils.call_llm import call_llm
+
 # To run, run `python -m uvicorn app.main:app --reload --port 8000` in python_backend folder
 
 class TextInput(BaseModel):
@@ -107,3 +109,12 @@ class UserRead(BaseModel):
 def get_users(db: Session = Depends(dependencies.get_db)):
     users = db.query(models.User).all()  # retrieves all users
     return users
+
+class QueryLLM(BaseModel):
+    query: str
+
+@app.post("/query_llm")
+async def query_llm(query: QueryLLM):
+    prompt = query.query
+    response = call_llm(prompt)
+    return {"result": response}

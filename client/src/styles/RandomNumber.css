@@ -1,0 +1,63 @@
+/* RandomNumber Component Styles */
+.random-number-container {
+  margin: 16px 0;
+}
+
+.random-number-title {
+  font-size: 18px;
+  margin: 0 0 12px 0;
+  color: #f3f4f6;
+}
+
+.random-number-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.random-number-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.random-number-input {
+  margin-left: 4px;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.random-number-button {
+  padding: 6px 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.random-number-button:hover {
+  background-color: #45a049;
+}
+
+.random-number-error {
+  color: red;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.random-number-result {
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.random-number-result strong {
+  font-weight: bold;
+  color: #f3f4f6;
+}
+

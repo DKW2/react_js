@@ -1,0 +1,160 @@
+/* FetchUsers Component Styles */
+.fetch-users-container {
+  padding: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.fetch-users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.fetch-users-title {
+  margin: 0;
+  color: white;
+}
+
+.fetch-users-refresh-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.fetch-users-refresh-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.fetch-users-last-updated {
+  color: #ccc;
+  font-size: 14px;
+  margin: 0 0 1rem 0;
+}
+
+.fetch-users-error {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+}
+
+.fetch-users-loading {
+  text-align: center;
+  padding: 2rem;
+  color: white;
+}
+
+.fetch-users-empty {
+  text-align: center;
+  padding: 2rem;
+  color: #ccc;
+  font-style: italic;
+}
+
+.fetch-users-table {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.fetch-users-header-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 200px 100px;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+  color: white;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fetch-users-header-cell {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding-right: 1rem;
+}
+
+.fetch-users-header-cell:last-child {
+  border-right: none;
+  padding-left: 1rem;
+  text-align: center;
+}
+
+.fetch-users-data-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 200px 100px;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.02);
+  align-items: center;
+}
+
+.fetch-users-data-row:nth-child(even) {
+  background-color: transparent;
+}
+
+.fetch-users-data-row:last-child {
+  border-bottom: none;
+}
+
+.fetch-users-data-cell {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding-right: 1rem;
+  text-align: center;
+  color: #ccc;
+  font-family: monospace;
+}
+
+.fetch-users-data-cell-name {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding-right: 1rem;
+  padding-left: 1rem;
+  word-break: break-word;
+  color: white;
+}
+
+.fetch-users-data-cell-email {
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  padding-right: 1rem;
+  padding-left: 1rem;
+  word-break: break-word;
+  color: #ccc;
+}
+
+.fetch-users-data-cell-actions {
+  padding-left: 1rem;
+  text-align: center;
+}
+
+.fetch-users-delete-button {
+  padding: 4px 8px;
+  font-size: 12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.fetch-users-delete-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.fetch-users-count {
+  margin-top: 1rem;
+  text-align: center;
+  color: #ccc;
+  font-size: 14px;
+}
+

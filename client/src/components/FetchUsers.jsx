@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL } from '../config';
+import '../styles/FetchUsers.css';
 
 function FetchUsers() {
   const [users, setUsers] = useState([]);
@@ -68,145 +69,66 @@ function FetchUsers() {
   };
 
   return (
-    <div style={{ padding: "1rem", maxWidth: "800px", margin: "0 auto" }}>
-      <div style={{ 
-        display: 'flex', 
-        justifyContent: 'space-between', 
-        alignItems: 'center', 
-        marginBottom: '1rem' 
-      }}>
-        <h2 style={{ margin: 0, color: "white" }}>Users List</h2>
+    <div className="fetch-users-container">
+      <div className="fetch-users-header">
+        <h2 className="fetch-users-title">Users List</h2>
         <button
           onClick={handleRefresh}
           disabled={isLoading}
-          style={{
-            padding: '8px 16px',
-            fontSize: '14px',
-            backgroundColor: isLoading ? '#ccc' : '#28a745',
-            color: 'white',
-            border: 'none',
-            borderRadius: '4px',
-            cursor: isLoading ? 'not-allowed' : 'pointer'
-          }}
+          className="fetch-users-refresh-button"
         >
           {isLoading ? 'Loading...' : 'Refresh'}
         </button>
       </div>
 
       {lastFetch && (
-        <p style={{ color: '#ccc', fontSize: '14px', margin: '0 0 1rem 0' }}>
+        <p className="fetch-users-last-updated">
           Last updated: {lastFetch}
         </p>
       )}
 
       {error && (
-        <div style={{
-          marginBottom: '1rem',
-          padding: '0.75rem',
-          backgroundColor: '#f8d7da',
-          border: '1px solid #f5c6cb',
-          borderRadius: '4px',
-          color: '#721c24'
-        }}>
+        <div className="fetch-users-error">
           <strong>Error:</strong> {error}
         </div>
       )}
 
       {isLoading && users.length === 0 ? (
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '2rem', 
-          color: 'white' 
-        }}>
+        <div className="fetch-users-loading">
           Loading users...
         </div>
       ) : users.length === 0 ? (
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '2rem', 
-          color: '#ccc',
-          fontStyle: 'italic'
-        }}>
+        <div className="fetch-users-empty">
           No users found
         </div>
       ) : (
-        <div style={{
-          backgroundColor: 'rgba(255, 255, 255, 0.05)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          borderRadius: '8px',
-          overflow: 'hidden'
-        }}>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '80px 1fr 200px 100px',
-            padding: '1rem',
-            backgroundColor: 'rgba(255, 255, 255, 0.1)',
-            fontWeight: 'bold',
-            color: 'white',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
-          }}>
-            <div style={{ borderRight: '1px solid rgba(255, 255, 255, 0.2)', paddingRight: '1rem' }}>ID</div>
-            <div style={{ borderRight: '1px solid rgba(255, 255, 255, 0.2)', paddingRight: '1rem', paddingLeft: '1rem' }}>Name</div>
-            <div style={{ borderRight: '1px solid rgba(255, 255, 255, 0.2)', paddingRight: '1rem', paddingLeft: '1rem' }}>Email</div>
-            <div style={{ paddingLeft: '1rem', textAlign: 'center' }}>Actions</div>
+        <div className="fetch-users-table">
+          <div className="fetch-users-header-row">
+            <div className="fetch-users-header-cell">ID</div>
+            <div className="fetch-users-header-cell">Name</div>
+            <div className="fetch-users-header-cell">Email</div>
+            <div className="fetch-users-header-cell">Actions</div>
           </div>
           
           {users.map((user, index) => (
             <div
               key={user.id || index}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '80px 1fr 200px 100px',
-                padding: '1rem',
-                borderBottom: index < users.length - 1 ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
-                backgroundColor: index % 2 === 0 ? 'rgba(255, 255, 255, 0.02)' : 'transparent',
-                alignItems: 'center'
-              }}
+              className="fetch-users-data-row"
             >
-              <div style={{ 
-                color: '#ccc', 
-                fontFamily: 'monospace',
-                borderRight: '1px solid rgba(255, 255, 255, 0.2)',
-                paddingRight: '1rem',
-                textAlign: 'center'
-              }}>
+              <div className="fetch-users-data-cell">
                 {user.id || 'N/A'}
               </div>
-              <div style={{ 
-                color: 'white',
-                borderRight: '1px solid rgba(255, 255, 255, 0.2)',
-                paddingRight: '1rem',
-                paddingLeft: '1rem',
-                wordBreak: 'break-word'
-              }}>
+              <div className="fetch-users-data-cell-name">
                 {user.name || 'N/A'}
               </div>
-              <div style={{ 
-                color: '#ccc',
-                borderRight: '1px solid rgba(255, 255, 255, 0.2)',
-                paddingRight: '1rem',
-                paddingLeft: '1rem',
-                wordBreak: 'break-word'
-              }}>
+              <div className="fetch-users-data-cell-email">
                 {user.email || 'N/A'}
               </div>
-              <div style={{ 
-                paddingLeft: '1rem',
-                textAlign: 'center'
-              }}>
+              <div className="fetch-users-data-cell-actions">
                 <button
                   onClick={() => handleDeleteUser(user.id)}
                   disabled={deletingId === user.id || !user.id}
-                  style={{
-                    padding: '4px 8px',
-                    fontSize: '12px',
-                    backgroundColor: deletingId === user.id ? '#ccc' : '#dc3545',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: deletingId === user.id || !user.id ? 'not-allowed' : 'pointer',
-                    transition: 'background-color 0.2s'
-                  }}
+                  className="fetch-users-delete-button"
                 >
                   {deletingId === user.id ? 'Deleting...' : 'Delete'}
                 </button>
@@ -217,12 +139,7 @@ function FetchUsers() {
       )}
 
       {users.length > 0 && (
-        <div style={{ 
-          marginTop: '1rem', 
-          textAlign: 'center', 
-          color: '#ccc', 
-          fontSize: '14px' 
-        }}>
+        <div className="fetch-users-count">
           Total users: {users.length}
         </div>
       )}
