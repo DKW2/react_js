@@ -2,11 +2,18 @@
   text-align: center;
 }
 
-.page {
+.dark_page {
   min-height: 100vh;
   background: linear-gradient(180deg, #1e293b 0%, #334155 100%);
   padding: 32px 16px;
-  color: #e5e7eb;
+  color: #e5e7eb;  
+}
+
+.light_page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e4edfc 0%, #d8dfe9 100%);
+  padding: 32px 16px;
+  color: #000000;
 }
 
 .container {
