@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../config';
-import '../styles/QueryLLM.css';
+import 'styles/QueryLLM.css';
 
 function QueryLLM() {
   const [question, setQuestion] = useState('');

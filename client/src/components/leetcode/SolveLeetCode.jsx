@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import ProblemSelector from './ProblemSelector';
 import ArgumentManager from './ArgumentManager';
-import { API_URL } from "../config";
+import { API_URL } from "config";
 
 export default function SolveLeetCode() {
   const [problemName, setProblemName] = useState("");

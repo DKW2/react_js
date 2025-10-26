@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { API_URL } from '../config';
-import '../styles/CreateUser.css';
+import { API_URL } from '../../config';
+import 'styles/CreateUser.css';
 
 function CreateUser() {
   const [formData, setFormData] = useState({

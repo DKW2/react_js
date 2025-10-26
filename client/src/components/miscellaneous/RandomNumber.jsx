@@ -1,6 +1,6 @@
 // Created by Cursor.ai
 import React, { useState } from 'react';
-import '../styles/RandomNumber.css';
+import 'styles/RandomNumber.css';
 
 function RandomNumber() {
   const [minValue, setMinValue] = useState('');

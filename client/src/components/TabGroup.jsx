@@ -1,15 +1,15 @@
-import '../App.css';
+import 'styles/App.css';
 import React, { useMemo, useState, useEffect } from 'react';
-import GrowingText from "./GrowingText.jsx";
-import ColorfulText from './ColorfulText.jsx';
-import ChangingText from './ChangingText.tsx';
-import TimedJumpscare from './TimedJumpscare.tsx';
+import GrowingText from "./miscellaneous/GrowingText.jsx";
+import ColorfulText from './miscellaneous/ColorfulText.jsx';
+import ChangingText from './miscellaneous/ChangingText.tsx';
+import TimedJumpscare from './miscellaneous/TimedJumpscare.tsx';
 import Predict from './Predict.jsx';
-import RandomNumber from './RandomNumber.jsx';
-import GetFunnyWord from './GetFunnyWord.jsx';
-import SolveLeetCode from './SolveLeetCode.jsx';
-import CreateUser from './CreateUser.jsx';
-import FetchUsers from './FetchUsers.jsx';
+import RandomNumber from './miscellaneous/RandomNumber.jsx';
+import GetFunnyWord from './miscellaneous/GetFunnyWord.jsx';
+import SolveLeetCode from './leetcode/SolveLeetCode.jsx';
+import CreateUser from './userManagement/CreateUser.jsx';
+import FetchUsers from './userManagement/FetchUsers.jsx';
 import QueryLLM from './QueryLLM.jsx';
 import { useTheme } from "../ThemeContext.jsx";
 
@@ -54,7 +54,7 @@ const { theme } = useTheme();
   }, [activeTab]);
 
   return (
-    <div className= {theme === "dark" ? "dark_page" : "light_page"}>
+    <div className= {theme === "light" ? "light_page" : "dark_page"}>
         <h1 className="title">Testing/JS Project</h1>
         <div className="tabs">
         <div className="tab-list" role="tablist" aria-label="Components">
