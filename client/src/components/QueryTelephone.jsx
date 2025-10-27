@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { API_URL } from '../config';
-import '../styles/QueryLLM.css';
+import { API_URL } from 'config';
+import 'styles/QueryLLM.css';
 
-function QueryLLM() {
+function QueryTelephone() {
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -22,11 +22,12 @@ function QueryLLM() {
     setAnswer('');
 
     try {
-      const response = await axios.post(`${API_URL}/query_llm`, {
-        query: question.trim()
+      const response = await axios.post(`${API_URL}/telephone`, {
+        query: question.trim(),
+        numLLM: 3
       });
       
-      setAnswer(response.data.result || 'No answer received');
+      setAnswer(response.data.result.final_comparison || 'No answer received');
     } catch (error) {
       console.error('Error querying LLM:', error);
       if (error.response) {
@@ -162,4 +163,4 @@ function QueryLLM() {
   );
 }
 
-export default QueryLLM;
+export default QueryTelephone;

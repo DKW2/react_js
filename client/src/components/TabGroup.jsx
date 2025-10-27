@@ -10,6 +10,7 @@ import GetFunnyWord from './miscellaneous/GetFunnyWord.jsx';
 import SolveLeetCode from './leetcode/SolveLeetCode.jsx';
 import CreateUser from './userManagement/CreateUser.jsx';
 import FetchUsers from './userManagement/FetchUsers.jsx';
+import QueryTelephone from './QueryTelephone.jsx';
 import QueryLLM from './QueryLLM.jsx';
 import { useTheme } from "../ThemeContext.jsx";
 
@@ -31,6 +32,7 @@ const { theme } = useTheme();
     { id: 'createuser', label: 'Create User', render: () => (<CreateUser />) },
     { id: 'fetchusers', label: 'Fetch Users', render: () => (<FetchUsers />) },
     { id: 'queryllm', label: 'Query LLM', render: () => (<QueryLLM />) },
+    { id: 'querytelephone', label: 'Query Telephone', render: () => (<QueryTelephone />) },
     { id: 'funny', label: 'Get Funny word', render: () => (<GetFunnyWord />) },
     { id: 'random', label: 'Random Number', render: () => (<RandomNumber />) },
     { id: 'jumpscares', label: 'Timed Jumpscares', render: () => (

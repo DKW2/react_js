@@ -14,7 +14,8 @@ from app.leetcode.longestCommonSubsequence import LongestCommonSubsequence
 from app.leetcode.framework import ArgError
 import random
 
-from pocketflow.utils.call_llm import call_llm
+from llmWorkloads.utils.call_llm import call_llm
+from llmWorkloads.telephone.main import run_telephone_game
 
 # To run, run `python -m uvicorn app.main:app --reload --port 8000` in python_backend folder
 
@@ -117,4 +118,14 @@ class QueryLLM(BaseModel):
 async def query_llm(query: QueryLLM):
     prompt = query.query
     response = call_llm(prompt)
+    return {"result": response}
+
+class QueryTelephoneLLM(BaseModel):
+    query: str
+    numLLM: int
+
+@app.post("/telephone")
+async def telephone(query: QueryTelephoneLLM):
+    prompt, numLLM = query.query, query.numLLM
+    response = run_telephone_game(prompt)
     return {"result": response}
