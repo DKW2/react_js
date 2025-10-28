@@ -4,14 +4,14 @@ import GrowingText from "./miscellaneous/GrowingText.jsx";
 import ColorfulText from './miscellaneous/ColorfulText.jsx';
 import ChangingText from './miscellaneous/ChangingText.tsx';
 import TimedJumpscare from './miscellaneous/TimedJumpscare.tsx';
-import Predict from './Predict.jsx';
+import Predict from './llmWorkflows/Predict.jsx';
 import RandomNumber from './miscellaneous/RandomNumber.jsx';
 import GetFunnyWord from './miscellaneous/GetFunnyWord.jsx';
 import SolveLeetCode from './leetcode/SolveLeetCode.jsx';
 import CreateUser from './userManagement/CreateUser.jsx';
 import FetchUsers from './userManagement/FetchUsers.jsx';
-import QueryTelephone from './QueryTelephone.jsx';
-import QueryLLM from './QueryLLM.jsx';
+import QueryTelephone from './llmWorkflows/QueryTelephone.jsx';
+import QueryLLM from './llmWorkflows/QueryLLM.jsx';
 import { useTheme } from "../ThemeContext.jsx";
 
 function App() {

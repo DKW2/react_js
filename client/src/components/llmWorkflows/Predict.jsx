@@ -2,7 +2,7 @@
 // Simple script utilizing axios to access fastAPI server.
 import { useState } from "react";
 import axios from "axios";
-import { API_URL } from "../config";
+import { API_URL } from "config";
 
 export default function Predict() {
   const [text, setText] = useState("");
