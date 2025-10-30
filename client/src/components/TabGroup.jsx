@@ -13,6 +13,7 @@ import FetchUsers from './userManagement/FetchUsers.jsx';
 import QueryTelephone from './llmWorkflows/QueryTelephone.jsx';
 import QueryLLM from './llmWorkflows/QueryLLM.jsx';
 import { useTheme } from "../ThemeContext.jsx";
+import SortNumbers from './miscellaneous/SortArray.jsx';
 
 function App() {
 
@@ -32,6 +33,7 @@ const { theme } = useTheme();
     { id: 'createuser', label: 'Create User', render: () => (<CreateUser />) },
     { id: 'fetchusers', label: 'Fetch Users', render: () => (<FetchUsers />) },
     { id: 'queryllm', label: 'Query LLM', render: () => (<QueryLLM />) },
+    { id: 'sortarray', label: 'Sort Array', render: () => (<SortNumbers/>) },
     { id: 'querytelephone', label: 'Query Telephone', render: () => (<QueryTelephone />) },
     { id: 'funny', label: 'Get Funny word', render: () => (<GetFunnyWord />) },
     { id: 'random', label: 'Random Number', render: () => (<RandomNumber />) },
